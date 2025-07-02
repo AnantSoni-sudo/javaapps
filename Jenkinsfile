@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        jdk 'JDK 21'               // Name defined in Jenkins tool configuration
-        maven 'Maven 3.9.6'        // Name defined in Jenkins tool configuration
+        jdk 'jdk21'               // Name defined in Jenkins tool configuration
+        maven 'M2_HOME'        // Name defined in Jenkins tool configuration
     }
 
     environment {
@@ -13,19 +13,19 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git url: "${PROJECT_REPO}"
+                git branch: 'main', url: "${PROJECT_REPO}"
             }
         }
 
         stage('Build with Maven') {
             steps {
-                sh 'mvn clean install'
+                bat 'mvn clean install'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
 
