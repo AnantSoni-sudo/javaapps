@@ -41,7 +41,7 @@ pipeline {
         }
         stage('Run Docker Container') {
             steps {
-                bat 'docker run -d -p 8080:8080 --name my-running-app my-java-app'
+                bat 'docker run -d -p 9090:9090 --name my-running-app my-java-app'
             }
         }
     }
